@@ -1,12 +1,55 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 
-namespace _15
+namespace Homework15
 {
-    class Program
+    public class Dictionary15
     {
-        static void Main(string[] args)
+
+        Dictionary<int, string> dict = new Dictionary<int, string>(7);
+
+        public int Length() => dict.Count;
+        public void Add(int key, string value)
         {
-            Console.WriteLine("Hello World!");
+            try
+            {
+                dict.Add(key, value);
+
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine($"{key} is already exists!");
+            }
+
         }
+
+        public string GetValue(int key)
+        {
+            return dict.TryGetValue(key, out string value) ? value : "not exists!";
+        }
+
+        public void Remove(int key)
+        {
+            try
+            {
+                dict.Remove(key);
+
+            }
+            catch (KeyNotFoundException)
+            {
+                Console.WriteLine($"{key} not found!");
+            }
+        }
+        public void Print()
+        {
+            foreach (KeyValuePair<int, string> pair in dict)
+            {
+                Console.WriteLine($"{pair.Key} | {pair.Value}");
+            }
+
+        }
+
+
     }
 }
+
